@@ -1,0 +1,335 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:conv="clr-namespace:PawaoxOCRWPF.GUI.Converters"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls" 
+                    >
+
+    <!-- Converters -->
+    <conv:InvertedBooleanConverter x:Key="convInvertedBoolean" />
+
+    <conv:BooleanToVisibilityConverter x:Key="convBoolToVisibility" />
+    <conv:BooleanToVisibilityConverterHidden x:Key="convBoolToVisibilityHidden" />
+    <conv:InvertedBooleanToVisibilityConverter x:Key="convInvertedBoolToVisibility" />
+
+    <conv:NullToBooleanConverter x:Key="convNullToBoolean" />
+    <conv:NullToInvertedBooleanConverter x:Key="convNullToInvertedBoolean" />
+    <conv:NullToVisiblityConverter x:Key="convNullToVisibility" />
+    <conv:NullToVisiblityInvertedConverter x:Key="convNullToInvertedVisibility" />
+
+    <conv:IsNumberAboveZeroConverter x:Key="convIsNumberAboveZero" />
+    <conv:IsNumberAboveZeroToVisConverter x:Key="convIsNumberAboveZeroToVis" />
+    <conv:InvertedIsNumberAboveZeroToVisConverter x:Key="convInvertedIsNumberAboveZeroToVis" />
+
+    <conv:MinutesToHoursConverter x:Key="convMinutesToHours" />
+
+    <conv:NumberMaxDecimalsConverter x:Key="convMaxDecimals1" MaxDecimals="1" />
+    <conv:NumberMaxDecimalsConverter x:Key="convMaxDecimals2" MaxDecimals="2" />
+    <conv:NumberMaxDecimalsConverter x:Key="convMaxDecimals5" MaxDecimals="5" />
+    <conv:NumberMaxDecimalsConverter x:Key="convMaxDecimals10" MaxDecimals="10" />
+
+    <conv:ListHasElementsConverter x:Key="convListHasElementsConverter" />
+    <conv:ListHasElementsToVisConverter x:Key="convListHasElementsToVisConverter" />
+    <conv:ListHasElementsToVisInvertedConverter x:Key="convListHasElementsToVisInvertedConverter" />
+    <conv:ListHasMultipleElementsConverter x:Key="convListHasMultipleElementsConverter" MoreThan="1" />
+    <conv:ListHasMultipleElementsConverter x:Key="convListHasMoreThan2Elements" MoreThan="2" />
+    <conv:ListHasMultipleElementsConverter x:Key="convListHasLessThan3Elements" LessThan="3" />
+    <conv:ListHasMultipleElementsConverter x:Key="convListHasMoreThan2ElementsToVis" MoreThan="2" AsVisibility="True" VisIfTrue="Visible" VisIfFalse="Collapsed" />
+    <conv:ListHasMultipleElementsConverter x:Key="convListHasLessThan3ElementsToVis" LessThan="3" AsVisibility="True" VisIfTrue="Visible" VisIfFalse="Collapsed" />
+
+    <conv:ListHasExactElementCountConverter x:Key="convListHasOneElement" Target="1" AsVisibility="False" />
+    <conv:ListHasExactElementCountConverter x:Key="convListHasTwoElements" Target="2" AsVisibility="False" />
+    <conv:ListHasExactElementCountConverter x:Key="convListHasOneElementToVis" Target="1" AsVisibility="True" VisIfTrue="Visible" VisIfFalse="Collapsed" />
+    <conv:ListHasExactElementCountConverter x:Key="convListHasTwoElementsToVis" Target="2" AsVisibility="True" VisIfTrue="Visible" VisIfFalse="Collapsed" />
+
+    <conv:IsDateTodayConverter x:Key="convIsDateToday" />
+
+
+    <!-- Shared Usage Resources -->
+
+    <SolidColorBrush x:Key="foregroundText" Color="#EBFDFC" />
+
+    <SolidColorBrush x:Key="elementsBackground" Color="White" />
+    <SolidColorBrush x:Key="elementsBorder" Color="LightGray" />
+
+    <SolidColorBrush x:Key="readonlyForeground" Color="#6C727D" />
+    <SolidColorBrush x:Key="readonlyBackground" Color="#EFEFEF" />
+
+    <!-- Always ON Style Overrides -->
+    <Style TargetType="ComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+        <Setter Property="Height" Value="26" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource elementsBackground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+    </Style>
+    
+    <Style TargetType="CheckBox" BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource foregroundText}" />
+    </Style>
+
+    <Style TargetType="TextBox" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+        <Setter Property="Height" Value="28" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource elementsBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource elementsBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+
+    <Style TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Height" Value="27" />
+    </Style>
+
+    <Style TargetType="Border">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Gray" />
+    </Style>
+
+    <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+
+
+    <!--Virtualised ItemsControl-->
+    <Style x:Key="itcVirtualized" TargetType="ItemsControl">
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel VirtualizingPanel.ScrollUnit="Pixel" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ItemsControl">
+                    <Border
+                    BorderThickness="{TemplateBinding Border.BorderThickness}"
+                    Padding="{TemplateBinding Control.Padding}"
+                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                    Background="{TemplateBinding Panel.Background}"
+                    SnapsToDevicePixels="True"
+                >
+                        <ScrollViewer Padding="{TemplateBinding Control.Padding}" Focusable="False">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Button Styles -->
+    <Style x:Key="mainButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Margin" Value="5,5,5,15" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="Foreground" Value="#2567d1" />
+    </Style>
+    <Style x:Key="mainButtonDevelopment" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Margin" Value="5,5,5,5" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#2567d1" />
+    </Style>
+
+    <Style x:Key="searchButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Padding" Value="0,0,0,2" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Content" Value="&#128269;"></Setter>
+        <Setter Property="ToolTip" Value="Search"></Setter>
+    </Style>
+
+    <Style x:Key="saveChangesButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Padding" Value="9,0" />
+        <Setter Property="Content" Value="Save Changes" />
+    </Style>
+
+    <Style x:Key="toggleButtonOn" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="Background" Value="DarkOrange" />
+        <Setter Property="ToolTip" Value="Currently ON" />
+        <Setter Property="Opacity" Value="0.86" />
+    </Style>
+
+    <Style x:Key="toggleButtonOff" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="AntiqueWhite" />
+        <Setter Property="ToolTip" Value="Currently OFF" />
+    </Style>
+
+
+    <!-- TextBox Styles -->
+    <Style x:Key="textArea" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="AcceptsTab" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+    </Style>
+
+    <Style x:Key="textAreaEditable" TargetType="TextBox" BasedOn="{StaticResource textArea}">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    <Style x:Key="textAreaReadonly" TargetType="TextBox" BasedOn="{StaticResource textArea}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="Background" Value="{StaticResource readonlyBackground}" />
+    </Style>
+
+    <Style x:Key="txbReadOnly" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="IsReadOnly" Value="true" />
+        <Setter Property="Foreground" Value="{StaticResource readonlyForeground}" />
+        <Setter Property="Background" Value="{StaticResource readonlyBackground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+    </Style>
+
+    <!-- TextBlock Styles -->
+    <Style x:Key="txtDisplayMessage" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{Binding DisplayMessage.Color}" />
+        <Setter Property="Text" Value="{Binding DisplayMessage.Message}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="5,0" />
+    </Style>
+
+    <Style x:Key="txtHeader" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource foregroundText}" />
+    </Style>
+
+    <Style x:Key="txtHeaderBlack" TargetType="TextBlock" BasedOn="{StaticResource txtHeader}">
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+    <Style x:Key="txtHeaderMedium" TargetType="TextBlock" BasedOn="{StaticResource txtHeader}">
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+    <Style x:Key="txtHeaderMediumBlack" TargetType="TextBlock" BasedOn="{StaticResource txtHeaderMedium}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+    <Style x:Key="txtHeaderBig" TargetType="TextBlock" BasedOn="{StaticResource txtHeader}">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style x:Key="txtHeaderBigBlack" TargetType="TextBlock" BasedOn="{StaticResource txtHeaderBig}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+    <Style x:Key="txtHeaderSupreme" TargetType="TextBlock" BasedOn="{StaticResource txtHeader}">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+    </Style>
+
+    <Style x:Key="txtHeaderSupremeBlack" TargetType="TextBlock" BasedOn="{StaticResource txtHeaderSupreme}">
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+    <Style x:Key="txtHyperlink" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="Foreground" Value="Purple" />
+        <Setter Property="FontStyle" Value="Italic" />
+    </Style>
+    <Style x:Key="txtMediumBlack" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+    <Style x:Key="txtMediumBlackBold" TargetType="TextBlock" BasedOn="{StaticResource txtMediumBlack}">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <!-- Border Styles -->
+    <Style x:Key="brdCombobox" TargetType="Border">
+        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Background" Value="{StaticResource elementsBackground}" />
+    </Style>
+
+    <!-- Rectangle Styles -->
+    <Style x:Key="SeparatorHorizontal" TargetType="Rectangle">
+        <Setter Property="Fill" Value="Black" />
+        <Setter Property="Height" Value="1" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+
+    <Style x:Key="SeparatorHorizontalMedium" TargetType="Rectangle" BasedOn="{StaticResource SeparatorHorizontal}">
+        <Setter Property="Height" Value="2" />
+    </Style>
+
+    <Style x:Key="SeparatorVertical" TargetType="Rectangle">
+        <Setter Property="Fill" Value="Black" />
+        <Setter Property="Width" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+
+    <Style x:Key="SeparatorVerticalMedium" TargetType="Rectangle" BasedOn="{StaticResource SeparatorVertical}">
+        <Setter Property="Width" Value="2" />
+    </Style>
+
+    <!-- Datagrid Styles -->
+    <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="AlternatingRowBackground" Value="#40D3D3D3" />
+        <Setter Property="AlternationCount" Value="1" />
+    </Style>
+
+
+    <Style x:Key="dgTextColumnElementStyleTextWrap" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+        <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+        <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Checkbox Styles-->
+    <Style x:Key="chkReadonly" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="IsEnabled" Value="False" />
+    </Style>
+
+    <!-- ToolTip Styles -->
+    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="LightGray" />
+    </Style>
+
+</ResourceDictionary>

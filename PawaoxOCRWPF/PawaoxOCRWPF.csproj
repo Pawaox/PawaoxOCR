@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F970000-8D71-4B5A-A50F-2A91864A093D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PawaoxOCRWPF</RootNamespace>
+    <AssemblyName>PawaoxOCRWPF</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.10\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="GUI\Components\UC_ToastNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Views\UC_OCR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Views\UC_System.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Views\UC_Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Windows\W_InputText.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Windows\W_TargetBoundingBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Windows\W_Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GUI\Components\UC_ToastNotification.xaml.cs">
+      <DependentUpon>UC_ToastNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="GUI\Converters\BooleanToVisibilityConverterHidden.cs" />
+    <Compile Include="GUI\Converters\DateToStringConverter.cs" />
+    <Compile Include="GUI\Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="GUI\Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="GUI\Converters\InvertedIsNumberAboveZeroToVisConverter.cs" />
+    <Compile Include="GUI\Converters\IsDateTodayConverter.cs" />
+    <Compile Include="GUI\Converters\IsNumberAboveZeroConverter.cs" />
+    <Compile Include="GUI\Converters\IsNumberAboveZeroToVisConverter.cs" />
+    <Compile Include="GUI\Converters\ListHasElementsConverter.cs" />
+    <Compile Include="GUI\Converters\ListHasElementsToVisConverter.cs" />
+    <Compile Include="GUI\Converters\ListHasElementsToVisInvertedConverter.cs" />
+    <Compile Include="GUI\Converters\ListHasExactElementCountConverter.cs" />
+    <Compile Include="GUI\Converters\ListHasMultipleElementsConverter.cs" />
+    <Compile Include="GUI\Converters\MinutesToHoursConverter.cs" />
+    <Compile Include="GUI\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="GUI\Converters\NullToInvertedBooleanConverter.cs" />
+    <Compile Include="GUI\Converters\NullToVisiblityConverter.cs" />
+    <Compile Include="GUI\Converters\NullToVisiblityInvertedConverter.cs" />
+    <Compile Include="GUI\Converters\NumberMaxDecimalsConverter.cs" />
+    <Compile Include="GUI\GUIModels\BoundingBox.cs" />
+    <Compile Include="GUI\GUIModels\SystemFeature.cs" />
+    <Compile Include="GUI\GUIModels\TabModel.cs" />
+    <Compile Include="GUI\GUIModels\UIToaster.cs" />
+    <Compile Include="GUI\GUIModels\UserControlType.cs" />
+    <Compile Include="GUI\MVVM\RelayCommand.cs" />
+    <Compile Include="GUI\ViewModels\ViewModel.cs" />
+    <Compile Include="GUI\ViewModels\ViewModelBase.cs" />
+    <Compile Include="GUI\ViewModels\VMLocator.cs" />
+    <Compile Include="GUI\ViewModels\VM_OCR.cs" />
+    <Compile Include="GUI\ViewModels\VM_System.cs" />
+    <Compile Include="GUI\ViewModels\VM_Main.cs" />
+    <Compile Include="GUI\Views\UC_OCR.xaml.cs">
+      <DependentUpon>UC_OCR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Views\UC_System.xaml.cs">
+      <DependentUpon>UC_System.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Views\UC_Main.xaml.cs">
+      <DependentUpon>UC_Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Windows\Options\WindowInputTextOptions.cs" />
+    <Compile Include="GUI\Windows\Options\WindowMessageOptions.cs" />
+    <Compile Include="GUI\Windows\Options\WindowMessagErrorOptions.cs" />
+    <Compile Include="GUI\Windows\Options\WindowMessageWarningOptions.cs" />
+    <Compile Include="GUI\Windows\Options\WindowOptionsBase.cs" />
+    <Compile Include="GUI\Windows\W_InputText.xaml.cs">
+      <DependentUpon>W_InputText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Windows\W_TargetBoundingBox.xaml.cs">
+      <DependentUpon>W_TargetBoundingBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Windows\W_Main.xaml.cs">
+      <DependentUpon>W_Main.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="GUI\Windows\W_Message.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Windows\W_MessageError.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Windows\W_MessageWarning.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GUI\Windows\W_Message.xaml.cs">
+      <DependentUpon>W_Message.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Windows\W_MessageError.xaml.cs">
+      <DependentUpon>W_MessageError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Windows\W_MessageWarning.xaml.cs">
+      <DependentUpon>W_MessageWarning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\MessageBroker.cs" />
+    <Compile Include="Helpers\GUIHelper.cs" />
+    <Compile Include="Helpers\ErrorHandler.cs" />
+    <Compile Include="Helpers\ScreenshotHelper.cs" />
+    <Compile Include="Messaging\BaseMessage.cs" />
+    <Compile Include="Messaging\MSG_DialogError.cs" />
+    <Compile Include="Messaging\MSG_DialogWarning.cs" />
+    <Compile Include="Messaging\MSG_DisplayMessage.cs" />
+    <Compile Include="Models\MessageException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Messaging\MSG_ChangeUserControl.cs" />
+    <Compile Include="Messaging\MSG_DialogInputText.cs" />
+    <Compile Include="Messaging\MSG_DialogMessage.cs" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\warn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\basePaw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pawBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pawGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pawRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\eagle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\eagle2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\circle_on.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\circle_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\circle_ylw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PawaoxOCR\PawaoxOCR.csproj">
+      <Project>{2AE839B5-4791-4C0F-9DD9-A4D91C131CDF}</Project>
+      <Name>PawaoxOCR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,18 @@
+Modes: Hook (WIP), OCR (Optical Character Recognition)
+
+Usage: Save to Clipboard, ???
+	Clipboard -> Move the read value to an output area.
+
+
+OPTIONS
+	Options should open a new window with tabs like admin tool
+	Should save settings to settings.txt next to .exe. If no permission to save, warn user.
+
+OCR Options:
+	Option to set TOP + LEFT PIXEL and WIDTH and HEIGHT -> Have a picker that opens transparent window sthat can be resized to the area.
+	Minimum delay between reads
+	Option to always show parse area with transparency
+	Option to have a transparent window with the output that overlays / always on top
+
+HOOK Options:
+	?

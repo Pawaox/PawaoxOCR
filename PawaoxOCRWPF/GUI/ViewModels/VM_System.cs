@@ -103,7 +103,7 @@ namespace PawaoxOCRWPF.GUI.ViewModels
                 foreach (TabModel tab in _originalTabModels)
                 {
                     if (!string.IsNullOrEmpty(tab.Header))
-                        if (tab.Header.Contains(SearchText))
+                        if (tab.Header.IndexOf(SearchText, StringComparison.CurrentCultureIgnoreCase) >= 0)
                             models.Add(tab);
                 }
 
@@ -112,7 +112,7 @@ namespace PawaoxOCRWPF.GUI.ViewModels
                     foreach (TabModel tab in _hiddenTabModels)
                     {
                         if (!string.IsNullOrEmpty(tab.Header))
-                            if (tab.Header.Contains(SearchText))
+                            if (tab.Header.IndexOf(SearchText, StringComparison.CurrentCultureIgnoreCase) >= 0)
                                 models.Add(tab);
                     }
                 }

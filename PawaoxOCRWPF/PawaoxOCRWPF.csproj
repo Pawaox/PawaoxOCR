@@ -244,20 +244,6 @@
     <Resource Include="todo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\basePaw.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\pawBlue.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\pawGreen.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\pawRed.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\eagle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

@@ -180,6 +180,11 @@ namespace PawaoxOCRWPF.GUI.ViewModels
                 int width = _targetBoundingBox.GetWidth();
                 int height = _targetBoundingBox.GetHeight();
 
+                if (width < 5 || height < 5)
+                {
+                    ErrorHandler.Error("Target area is too small! (Width & Height should be >= 5)");
+                    return;
+                }
                 Bitmap image = ScreenshotHelper.CaptureScreenRegion(left, top, width, height);
                 byte[] bytes = GUIHelper.ImageToByteArray(image);
 
@@ -309,12 +314,19 @@ namespace PawaoxOCRWPF.GUI.ViewModels
             {
                 await Task.Factory.StartNew(() => { RunningMode = 2; });
 
-                if (_ocrEngine == null)
+                int width = _targetBoundingBox.GetWidth();
+                int height = _targetBoundingBox.GetHeight();
+
+                if (width < 5 || height < 5)
                 {
+                    RunningMode = 1;
+                    ErrorHandler.Error("Target area is too small! (Width & Height should be >= 5)");
+                    return;
                 }
+
                 await Task.Factory.StartNew(() =>
                 {
-                    Thread.Sleep(857);
+                    Thread.Sleep(420);
 
                     try
                     {

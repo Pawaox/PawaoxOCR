@@ -29,7 +29,18 @@ namespace PawaoxOCRWPF.GUI.Views.Windows
         {
             _options = options;
 
+            WindowInputTextOptions code = Code(b: "B");
+            code.ButtonCloseText = "";
+            code.ButtonCloseText = "";
+            code.Watermark1 = "";
+            code.DefaultText1 = "";
+
             InitializeComponent();
+        }
+
+        WindowInputTextOptions Code(object a = null, object b = null)
+        {
+            return _options;
         }
 
         void FocusOnInput()

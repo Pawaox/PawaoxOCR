@@ -1,4 +1,5 @@
-﻿using PawaoxOCR;
+﻿using ControlzEx.Standard;
+using PawaoxOCR;
 using PawaoxOCRWPF.GUI.GUIModels;
 using PawaoxOCRWPF.GUI.MVVM;
 using PawaoxOCRWPF.Helpers;
@@ -175,6 +176,10 @@ namespace PawaoxOCRWPF.GUI.ViewModels
             try
             {
                 _timerCapture.Stop();
+
+                if (RunningMode == 1)
+                    return;
+
                 int top = _targetBoundingBox.GetTopPosition();
                 int left = _targetBoundingBox.GetLeftPosition();
                 int width = _targetBoundingBox.GetWidth();
@@ -186,43 +191,83 @@ namespace PawaoxOCRWPF.GUI.ViewModels
                     return;
                 }
                 Bitmap image = ScreenshotHelper.CaptureScreenRegion(left, top, width, height);
+
+                if (true)
+                {
+                    BitmapImageSettings settings = new BitmapImageSettings()
+                    {
+                        Brightness = -100,
+                        Contrast = 100,
+                        InvertColorsPostProcess = true,
+                        ResizePercentSize = 50.0
+                    };
+                    image = BitmapImageHelper.ImplementSettings(image, settings);
+
+                    image.Save("C:/Temp/OCR/0_Debug.png");
+                    /*
+                    image.Save("C:/Temp/OCR/1_base.png");
+
+
+                    Bitmap img1 = BitmapImageHelper.AdjustBrightnessContrast(image, -100, 100);
+                    img1.Save("C:/Temp/OCR/2_img.png");
+                    img1.Dispose();
+
+                    Bitmap img2 = BitmapImageHelper.AdjustBrightnessContrast(image, -255, 255);
+                    img2.Save("C:/Temp/OCR/3_img.png");
+                    img2.Dispose();
+
+                    Bitmap img3 = BitmapImageHelper.AdjustBrightnessContrast(image, -200, 200);
+                    img3.Save("C:/Temp/OCR/4_img.png");
+                    img3.Dispose();
+
+                    Bitmap img4 = BitmapImageHelper.AdjustBrightnessContrast(image, -50, 50);
+                    img4.Save("C:/Temp/OCR/5_img.png");
+                    img4.Dispose();
+                    */
+
+                }
                 byte[] bytes = GUIHelper.ImageToByteArray(image);
 
                 ProcessResult result = _ocrEngine.ProcessImage(bytes);
 
                 if (result != null)
                 {
-                    if (ShowRawOutput)
-                        this.Output = result.RawParsedText;
-                    else
+                    Dispatcher.CurrentDispatcher.Invoke(() =>
                     {
-                        string work = result.RawParsedText;
-                        work = work.Replace(@"\r\n\r\n", @"\r\n");
-                        work = work.Replace(@"\r\r", @"\r");
-                        work = work.Replace(@"\r", @"\n");
-                        work = work.Replace(@"\n\n", @"\n");
-
-
-                        string[] splt = work.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-                        StringBuilder sb = new StringBuilder();
-                        foreach (string line in splt)
+                        if (ShowRawOutput)
+                            this.Output = result.RawParsedText;
+                        else
                         {
-                            string lin = line.Trim();
+                            string work = result.RawParsedText;
+                            work = work.Replace(@"\r\n\r\n", @"\r\n");
+                            work = work.Replace(@"\r\r", @"\r");
+                            work = work.Replace(@"\r", @"\n");
+                            work = work.Replace(@"\n\n", @"\n");
 
-                            if (string.IsNullOrEmpty(lin))
-                                continue;
 
-                            sb.AppendLine(line);
+                            string[] splt = work.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                            StringBuilder sb = new StringBuilder();
+                            foreach (string line in splt)
+                            {
+                                string lin = line.Trim();
+
+                                if (string.IsNullOrEmpty(lin))
+                                    continue;
+
+                                sb.AppendLine(line);
+                            }
+
+                            this.Output = sb.ToString();
+                            this.OutputTimestamp = DateTime.Now.ToString("HH:mm:ss.ff") + " - Confidence: " + (result?.MeanConfidence.ToString() ?? "");
                         }
-
-                        this.Output = sb.ToString();
-                    }
+                    });
                 }
                 else
+                {
                     this.Output = "";
-
-                this.OutputTimestamp = DateTime.Now.ToString("HH:mm:ss.ff") + " - Confidence: " + result.MeanConfidence.ToString();
+                    this.OutputTimestamp = DateTime.Now.ToString("HH:mm:ss.ff");
+                }
             }
             catch (Exception exc)
             {
@@ -362,6 +407,7 @@ namespace PawaoxOCRWPF.GUI.ViewModels
             try
             {
                 RunningMode = 1;
+                _timerCapture.Stop();
             }
             catch (Exception exc)
             {

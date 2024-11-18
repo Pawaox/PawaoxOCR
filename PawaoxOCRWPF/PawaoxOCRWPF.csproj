@@ -187,9 +187,11 @@
     <Compile Include="GUI\Windows\W_MessageWarning.xaml.cs">
       <DependentUpon>W_MessageWarning.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BitmapImageHelper.cs" />
     <Compile Include="Helpers\MessageBroker.cs" />
     <Compile Include="Helpers\GUIHelper.cs" />
     <Compile Include="Helpers\ErrorHandler.cs" />
+    <Compile Include="Helpers\BitmapImageSettings.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Messaging\BaseMessage.cs" />
     <Compile Include="Messaging\MSG_DialogError.cs" />

@@ -203,7 +203,7 @@ namespace PawaoxOCRWPF.GUI.ViewModels
                     };
                     image = BitmapImageHelper.ImplementSettings(image, settings);
 
-                    image.Save("C:/Temp/OCR/0_Debug.png");
+                    //image.Save("C:/Temp/OCR/0_Debug.png");
                     /*
                     image.Save("C:/Temp/OCR/1_base.png");
 
